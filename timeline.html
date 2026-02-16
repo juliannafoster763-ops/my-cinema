@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>电影时间轴</title>
+
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #0b1a33, #000);
+  color: #dbe6ff;
+  font-family: Georgia, serif;
+}
+
+header {
+  padding: 30px;
+  text-align: center;
+}
+header h1 {
+  font-weight: normal;
+  letter-spacing: 2px;
+}
+
+button {
+  margin-top: 12px;
+  background: transparent;
+  border: 1px solid #3d6cff;
+  color: #dbe6ff;
+  padding: 10px 22px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+button:hover {
+  background: #3d6cff;
+  color: #000;
+}
+
+/* ===== 时间轴 ===== */
+.timeline {
+  width: 80%;
+  margin: 60px auto;
+  position: relative;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #3d6cff;
+}
+
+.bubble {
+  width: 42%;
+  padding: 18px 20px;
+  border: 1px solid #3d6cff;
+  border-radius: 30px;
+  background: rgba(0,0,40,0.65);
+  margin: 40px 0;
+  cursor: pointer;
+  transition: 0.3s;
+  position: relative;
+}
+
+.bubble:hover {
+  transform: translateY(-6px);
+}
+
+.left { left: 0; }
+.right { left: 58%; }
+
+.bubble p {
+  display: none;
+  margin-top: 10px;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+/* ===== 星光反馈 ===== */
+.star {
+  position: fixed;
+  color: #8ab4ff;
+  animation: rise 1s ease-out forwards;
+}
+@keyframes rise {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-40px); }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>电影时间轴</h1>
+  <button onclick="location.href='index.html'">返回主页面</button>
+</header>
+
+<section class="timeline">
+
+  <div class="bubble left" onclick="toggle(this)">
+    <strong>某一年 · 开始留下痕迹</strong>
+    <p>
+      那时开始意识到，有些电影看完之后会在身体里停留，
+      不是情绪，而是一种结构性的回声。
+    </p>
+  </div>
+
+  <div class="bubble right" onclick="toggle(this)">
+    <strong>后来 · 偏好逐渐成形</strong>
+    <p>
+      重复被相似主题吸引，
+      也慢慢允许自己在看不懂的地方停下。
+    </p>
+  </div>
+
+  <div class="bubble left" onclick="toggle(this)">
+    <strong>再后来 · 放弃完整理解</strong>
+    <p>
+      不再急着总结，
+      电影开始只是留下痕迹，
+      而不是必须被解释的对象。
+    </p>
+  </div>
+
+  <div class="bubble right" onclick="toggle(this)">
+    <strong>此时此刻</strong>
+    <p>
+      这个系统会继续生长。
+      我允许未来的自己推翻现在的理解。
+    </p>
+  </div>
+
+</section>
+
+<script>
+function toggle(el) {
+  const p = el.querySelector("p");
+  p.style.display = p.style.display === "block" ? "none" : "block";
+
+  for (let i = 0; i < 6; i++) {
+    const s = document.createElement("div");
+    s.className = "star";
+    s.innerText = "✦";
+    s.style.left = event.clientX + "px";
+    s.style.top = event.clientY + "px";
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 1000);
+  }
+}
+</script>
+
+</body>
+</html>
