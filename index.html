@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>电影系统 · 主页面</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #000;
+  color: #cfe0ff;
+  font-family: Georgia, serif;
+}
+
+header {
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  background: transparent;
+  border: 1px solid #2f6cff;
+  color: #cfe0ff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+button:hover {
+  background: #2f6cff;
+  color: #000;
+}
+
+/* ===== 主页面网格 ===== */
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 20px;
+  padding: 20px;
+}
+
+.panel {
+  border: 2px solid #2f6cff;
+  border-radius: 12px;
+  min-height: 140px;
+  padding: 16px;
+  transition: 0.3s;
+}
+
+.panel:hover {
+  transform: translateY(-4px);
+}
+
+/* 不同大小示例 */
+.panel.large {
+  grid-column: span 2;
+  min-height: 200px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>我的电影空间</h1>
+  <div>
+    <button onclick="location.href='graph.html'">思维气泡</button>
+    <button onclick="location.href='timeline.html'">时间轴</button>
+  </div>
+</header>
+
+<section class="dashboard">
+  <div class="panel">模块一<br>（你想放什么都行）</div>
+  <div class="panel">模块二</div>
+  <div class="panel large">模块三（大块）</div>
+  <div class="panel">模块四</div>
+</section>
+
+</body>
+</html>
