@@ -2,61 +2,79 @@
 <html lang="zh">
 <head>
 <meta charset="UTF-8">
-<title>电影系统 · 主页面</title>
+<title>我的电影系统</title>
+
 <style>
 * { box-sizing: border-box; }
 body {
   margin: 0;
-  background: #000;
-  color: #cfe0ff;
-  font-family: Georgia, serif;
+  background: linear-gradient(180deg, #0b1220, #000);
+  color: #e5ecff;
+  font-family: "Segoe UI", system-ui;
 }
 
+/* ===== 顶部 ===== */
 header {
-  padding: 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 24px;
+  text-align: center;
 }
+header h1 {
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+header span {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+/* ===== Dashboard 网格 ===== */
+.dashboard {
+  display: grid;
+  gap: 16px;
+  padding: 20px;
+}
+
+/* 卡片通用样式 */
+.card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(120,150,255,0.25);
+  border-radius: 16px;
+  padding: 16px;
+  backdrop-filter: blur(6px);
+}
+
+/* ===== 竖屏（手机） ===== */
+@media (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== 横屏 / 平板 / 桌面 ===== */
+@media (min-width: 769px) {
+  .dashboard {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+/* 示例尺寸 */
+.card.big { min-height: 180px; }
+.card.medium { min-height: 140px; }
+.card.small { min-height: 100px; }
 
 button {
+  margin-top: 10px;
   background: transparent;
-  border: 1px solid #2f6cff;
-  color: #cfe0ff;
-  padding: 10px 20px;
+  border: 1px solid #4f6cff;
+  color: #dbe6ff;
+  padding: 8px 18px;
   border-radius: 20px;
   cursor: pointer;
 }
 button:hover {
-  background: #2f6cff;
+  background: #4f6cff;
   color: #000;
-}
-
-/* ===== 主页面网格 ===== */
-.dashboard {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
-  gap: 20px;
-  padding: 20px;
-}
-
-.panel {
-  border: 2px solid #2f6cff;
-  border-radius: 12px;
-  min-height: 140px;
-  padding: 16px;
-  transition: 0.3s;
-}
-
-.panel:hover {
-  transform: translateY(-4px);
-}
-
-/* 不同大小示例 */
-.panel.large {
-  grid-column: span 2;
-  min-height: 200px;
 }
 </style>
 </head>
@@ -64,18 +82,31 @@ button:hover {
 <body>
 
 <header>
-  <h1>我的电影空间</h1>
-  <div>
-    <button onclick="location.href='graph.html'">思维气泡</button>
-    <button onclick="location.href='timeline.html'">时间轴</button>
-  </div>
+  <h1>光影时光</h1>
+  <span>MY CINEMA JOURNEY</span>
 </header>
 
 <section class="dashboard">
-  <div class="panel">模块一<br>（你想放什么都行）</div>
-  <div class="panel">模块二</div>
-  <div class="panel large">模块三（大块）</div>
-  <div class="panel">模块四</div>
+
+  <div class="card big">
+    📊 观影统计（总数 / 年度 / 最近）
+  </div>
+
+  <div class="card medium">
+    ⭐ 我的 Top 电影
+  </div>
+
+  <div class="card big">
+    🎬 最近观看记录
+    <br>
+    <button onclick="location.href='graph.html'">思维气泡</button>
+    <button onclick="location.href='timeline.html'">时间轴</button>
+  </div>
+
+  <div class="card medium">
+    📈 趋势 / 分析（占位）
+  </div>
+
 </section>
 
 </body>
