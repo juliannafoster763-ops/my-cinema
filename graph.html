@@ -1,0 +1,36 @@
+<div class="bubble" style="top:200px; left:300px;">电影 · 2021</div>
+
+<style>
+.bubble {
+  position: absolute;
+  padding: 14px 20px;
+  border: 1px solid #2f6cff;
+  border-radius: 40px;
+  background: rgba(0,0,30,0.7);
+  cursor: grab;
+  user-select: none;
+}
+</style>
+
+<script>
+const bubble = document.querySelector('.bubble');
+let offsetX, offsetY, dragging = false;
+
+bubble.addEventListener('mousedown', e => {
+  dragging = true;
+  offsetX = e.clientX - bubble.offsetLeft;
+  offsetY = e.clientY - bubble.offsetTop;
+  bubble.style.cursor = 'grabbing';
+});
+
+document.addEventListener('mousemove', e => {
+  if (!dragging) return;
+  bubble.style.left = e.clientX - offsetX + 'px';
+  bubble.style.top = e.clientY - offsetY + 'px';
+});
+
+document.addEventListener('mouseup', () => {
+  dragging = false;
+  bubble.style.cursor = 'grab';
+});
+</script>
